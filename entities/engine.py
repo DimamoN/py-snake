@@ -8,7 +8,7 @@ class Engine:
         self.canvas = canvas
         self.game_map = game_map
         self.in_game = True
-        self.turn_time = 0.1
+        self.turn_time = 0.2
         self.lb_start_game = lb_start_game
         self.snake = snake
 
@@ -31,6 +31,8 @@ class Engine:
             self.root.update_idletasks()
 
             time.sleep(self.turn_time)
+
+            self.snake.move()
 
             self.canvas.delete('all')
             self.game_map.render_grid(self.canvas)

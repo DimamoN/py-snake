@@ -39,10 +39,10 @@ def root():
     root.bind('<space>', engine.start_stop)
     root.bind('<Return>', engine.game_loop)
 
-    root.bind('<w>', snake.move)
-    root.bind('<a>', snake.move)
-    root.bind('<s>', snake.move)
-    root.bind('<d>', snake.move)
+    root.bind('<w>', snake.change_direction)
+    root.bind('<a>', snake.change_direction)
+    root.bind('<s>', snake.change_direction)
+    root.bind('<d>', snake.change_direction)
 
     root.mainloop()
 

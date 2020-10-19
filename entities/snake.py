@@ -16,39 +16,31 @@ class Snake:
         self.body = start_pos
         self.direction = Direction.RIGHT
 
+    def change_direction(self, event):
+        if event.keysym == 'w' and self.direction != Direction.DOWN:
+            self.direction = Direction.UP
+        elif event.keysym == 's' and self.direction != Direction.UP:
+            self.direction = Direction.DOWN
+        elif event.keysym == 'a' and self.direction != Direction.RIGHT:
+            self.direction = Direction.LEFT
+        elif event.keysym == 'd' and self.direction != Direction.LEFT:
+            self.direction = Direction.RIGHT
+        else:
+            raise Exception("unsupported")
 
-    # def change_direction(self, event):
-    #     if event.keysym == 'w' and self.direction != Direction.DOWN:
-    #         self.direction = Direction.UP
-    #     elif event.keysym == 's' and self.direction != Direction.UP:
-    #         self.direction = Direction.DOWN
-    #     elif event.keysym == 'a' and self.direction != Direction.RIGHT:
-    #         self.direction = Direction.LEFT
-    #     elif event.keysym == 'd' and self.direction != Direction.LEFT:
-    #         self.direction = Direction.RIGHT
-    #     else:
-    #         raise Exception("unsupported")
-
-
-    def move(self, event):
+    def move(self):
         print("- Moving")
         head_cell = Pos.fromPos(self.body[0])
         print("head_cell:" + str(head_cell))
 
-        if event.keysym == 'w' and self.direction != Direction.DOWN:
-            self.direction = Direction.UP
+        if self.direction == Direction.UP:
             head_cell.y -= 1
-        elif event.keysym == 's' and self.direction != Direction.UP:
-            self.direction = Direction.DOWN
+        elif self.direction == Direction.DOWN:
             head_cell.y += 1
-        elif event.keysym == 'a' and self.direction != Direction.RIGHT:
-            self.direction = Direction.LEFT
+        elif self.direction == Direction.LEFT:
             head_cell.x -= 1
-        elif event.keysym == 'd' and self.direction != Direction.LEFT:
-            self.direction = Direction.RIGHT
+        elif self.direction == Direction.RIGHT:
             head_cell.x += 1
-        else:
-            raise Exception("unsupported")
 
         print("direction:" + self.direction.name)
         print("new head_cell:" + str(head_cell))
