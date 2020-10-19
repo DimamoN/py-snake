@@ -1,4 +1,5 @@
 import time
+from random import random
 
 
 class Engine:
@@ -14,7 +15,7 @@ class Engine:
 
         # food
         self.spawn_threshold = 10
-        self.spawn_time = 0
+        self.spawn_turns = 0
         self.food_pos_list = []
 
     def set_start_food(self, food_pos_list):
@@ -32,13 +33,21 @@ class Engine:
 
             time.sleep(self.turn_time)
 
+            if self.should_spawn_food():
+                pos = self.game_map.generate_new_food_pos()
+                self.food_pos_list.append(pos)
+                self.spawn_turns = 0
+
+
             self.snake.move()
 
             self.canvas.delete('all')
             self.game_map.render_grid(self.canvas)
             self.game_map.render_food(self.canvas, self.food_pos_list)
             self.game_map.render_snake(self.canvas, self.snake)
+
+            self.spawn_turns += 1
             print("test")
 
     def should_spawn_food(self):
-        return self.spawn_time >= self.spawn_threshold
+        return self.spawn_turns >= self.spawn_threshold

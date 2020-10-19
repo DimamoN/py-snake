@@ -1,5 +1,4 @@
 import tkinter
-import time
 
 from entities.engine import Engine
 from entities.map import Map
@@ -27,12 +26,12 @@ def root():
     canvas = tkinter.Canvas(root, width=CANV_WIDTH, height=CANV_HEIGHT)
     canvas.pack()
 
-    game_map = Map(MAP_SIZE_X, MAP_SIZE_Y, CELL_SIZE)
-
     lb = tkinter.Label(canvas, text="Press Enter to Start the game", bg="white")
     lb.place(x=300, y=100)
 
     snake = Snake([Pos(4, 1), Pos(3, 1), Pos(2, 1), Pos(1, 1)])
+    game_map = Map(MAP_SIZE_X, MAP_SIZE_Y, CELL_SIZE)
+
     engine = Engine(root, canvas, game_map, snake, lb)
     engine.set_start_food([Pos(10, 10), Pos(8, 5)])
 
