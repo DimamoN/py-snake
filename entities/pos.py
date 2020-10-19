@@ -1,5 +1,4 @@
 
-
 class Pos:
 
     def __init__(self, x, y):
@@ -12,3 +11,8 @@ class Pos:
 
     def __str__(self):
         return "Pos(x=" + str(self.x) + ", y=" + str(self.y) + ")"
+
+    def __eq__(self, other):
+        if isinstance(other, Pos):
+            return self.x == other.x and self.y == other.y
+        return False

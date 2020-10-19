@@ -31,7 +31,19 @@ class Snake:
                 raise Exception("unsupported")
             self.direction_changed_in_that_turn = True
 
-    def move(self):
+    def next_pos(self):
+        head_cell = Pos.fromPos(self.body[0])
+        if self.direction == Direction.UP:
+            head_cell.y -= 1
+        elif self.direction == Direction.DOWN:
+            head_cell.y += 1
+        elif self.direction == Direction.LEFT:
+            head_cell.x -= 1
+        elif self.direction == Direction.RIGHT:
+            head_cell.x += 1
+        return head_cell
+
+    def move(self, should_grow):
         print("- Moving")
         head_cell = Pos.fromPos(self.body[0])
         print("head_cell:" + str(head_cell))
@@ -49,12 +61,9 @@ class Snake:
         print("new head_cell:" + str(head_cell))
         self.body.insert(0, head_cell)
 
-        self.body.remove(self.body[-1])
+        if not should_grow:
+            self.body.remove(self.body[-1])
 
         self.direction_changed_in_that_turn = False
 
-    def count(self):
-        return len(self.body)
 
-    def head_pos(self):
-        return self.body[0]
