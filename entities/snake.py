@@ -15,18 +15,21 @@ class Snake:
     def __init__(self, start_pos):
         self.body = start_pos
         self.direction = Direction.RIGHT
+        self.direction_changed_in_that_turn = False
 
     def change_direction(self, event):
-        if event.keysym == 'w' and self.direction != Direction.DOWN:
-            self.direction = Direction.UP
-        elif event.keysym == 's' and self.direction != Direction.UP:
-            self.direction = Direction.DOWN
-        elif event.keysym == 'a' and self.direction != Direction.RIGHT:
-            self.direction = Direction.LEFT
-        elif event.keysym == 'd' and self.direction != Direction.LEFT:
-            self.direction = Direction.RIGHT
-        else:
-            raise Exception("unsupported")
+        if not self.direction_changed_in_that_turn:
+            if event.keysym == 'w' and self.direction != Direction.DOWN:
+                self.direction = Direction.UP
+            elif event.keysym == 's' and self.direction != Direction.UP:
+                self.direction = Direction.DOWN
+            elif event.keysym == 'a' and self.direction != Direction.RIGHT:
+                self.direction = Direction.LEFT
+            elif event.keysym == 'd' and self.direction != Direction.LEFT:
+                self.direction = Direction.RIGHT
+            else:
+                raise Exception("unsupported")
+            self.direction_changed_in_that_turn = True
 
     def move(self):
         print("- Moving")
@@ -47,6 +50,8 @@ class Snake:
         self.body.insert(0, head_cell)
 
         self.body.remove(self.body[-1])
+
+        self.direction_changed_in_that_turn = False
 
     def count(self):
         return len(self.body)
