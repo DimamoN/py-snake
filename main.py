@@ -1,9 +1,9 @@
 import tkinter
 
-from entities.engine import Engine
-from entities.map import Map
-from entities.pos import Pos
-from entities.snake import Snake
+from src.entities.engine import Engine
+from src.entities.map import Map
+from src.entities.pos import Pos
+from src.entities.snake import Snake
 
 ROOT_SIZE = "640x640"
 

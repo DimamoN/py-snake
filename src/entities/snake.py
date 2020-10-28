@@ -1,6 +1,6 @@
 from enum import Enum
 
-from entities.pos import Pos
+from src.entities.pos import Pos
 
 
 class Direction(Enum):
