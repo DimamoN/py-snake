@@ -1,5 +1,5 @@
 import time
-
+import utils.sound
 
 class Engine:
 
@@ -42,6 +42,7 @@ class Engine:
             next_snake_pos = self.snake.next_pos()
             if next_snake_pos in self.food_pos_list:
                 snake_should_grow = True
+                utils.sound.play_sound_pop()
                 self.food_pos_list.remove(next_snake_pos)
 
             self.snake.move(snake_should_grow)
