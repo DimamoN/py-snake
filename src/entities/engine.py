@@ -1,5 +1,6 @@
 import time
-import src.utils.sound
+from src.utils.sound import play_sound_pop, play_sound_hit
+
 
 class Engine:
 
@@ -40,9 +41,16 @@ class Engine:
 
             snake_should_grow = False
             next_snake_pos = self.snake.next_pos()
+
+            if next_snake_pos in self.snake.body:
+                print('SELF HIT ON: ' + str(next_snake_pos))
+                self.in_game = False
+                play_sound_hit()
+                continue
+
             if next_snake_pos in self.food_pos_list:
                 snake_should_grow = True
-                src.utils.sound.play_sound_pop()
+                play_sound_pop()
                 self.food_pos_list.remove(next_snake_pos)
 
             self.snake.move(snake_should_grow)
