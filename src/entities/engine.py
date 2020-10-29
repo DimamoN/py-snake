@@ -11,12 +11,12 @@ class Engine:
         self.canvas = canvas
         self.game_map = game_map
         self.in_game = True
-        self.turn_time = 0.25
+        self.turn_time = config.TURN_TIME
         self.lb_start_game = lb_start_game
         self.snake = snake
 
         # food
-        self.spawn_threshold = 15
+        self.spawn_threshold = config.SPAWN_THRESHOLD
         self.spawn_turns = 0
         self.food_pos_list = []
 
