@@ -1,20 +1,10 @@
 import tkinter
+from config import *
 
 from src.entities.engine import Engine
 from src.entities.map import Map
 from src.entities.pos import Pos
 from src.entities.snake import Snake
-
-ROOT_SIZE = "640x640"
-
-CANV_WIDTH = 640
-CANV_HEIGHT = 640
-ROOT_BG = "black"
-GAME_TITLE = "game"
-
-MAP_SIZE_X = 20
-MAP_SIZE_Y = 20
-CELL_SIZE = 32
 
 def root():
     root = tkinter.Tk()

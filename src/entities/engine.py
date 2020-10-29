@@ -1,4 +1,6 @@
 import time
+import config
+
 from src.utils.sound import play_sound_pop, play_sound_hit
 
 
@@ -48,6 +50,13 @@ class Engine:
                 play_sound_hit()
                 continue
 
+            # Check moving outside the map
+            if self.__is_out_of_map(next_snake_pos):
+                print('OUT OF MAP: ' + str(next_snake_pos))
+                self.in_game = False
+                play_sound_hit()
+                continue
+
             if next_snake_pos in self.food_pos_list:
                 snake_should_grow = True
                 play_sound_pop()
@@ -62,6 +71,11 @@ class Engine:
             self.game_map.render_snake(self.canvas, self.snake)
 
             self.spawn_turns += 1
+
+    def __is_out_of_map(self, next_pos):
+        return next_pos.x < 0 or next_pos.y < 0 \
+               or next_pos.x > config.MAP_SIZE_X \
+               or next_pos.y > config.MAP_SIZE_Y
 
     def should_spawn_food(self):
         return self.spawn_turns >= self.spawn_threshold
