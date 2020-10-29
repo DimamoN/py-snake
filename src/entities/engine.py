@@ -1,7 +1,7 @@
 import time
 import config
 
-from src.utils.sound import play_sound_pop, play_sound_hit
+from utils.sound import play_sound_pop, play_sound_hit
 
 
 class Engine:

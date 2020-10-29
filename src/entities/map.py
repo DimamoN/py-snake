@@ -1,6 +1,6 @@
 import random
 
-from src.entities.pos import Pos
+from entities.pos import Pos
 
 
 class Map:
